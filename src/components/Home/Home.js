@@ -5,24 +5,35 @@ import useTshirt from '../../hooks/useTshirt';
 import Tshirt from '../Tshirt/Tshirt';
 
 const Home = () => {
-    const [tshirts,setTshirts] = useTshirt()
-    const [cart,setCart] = useState([])
+    const [tshirts, setTshirts] = useTshirt()
+    const [cart, setCart] = useState([])
 
     const handleAddToCart = (selectedItem) => {
-        const newCart = [...cart, selectedItem]
-        setCart(newCart)
+        const exists = cart.find(tshirts => tshirts._id === selectedItem._id)
+        if (!exists) {
+            const newCart = [...cart, selectedItem]
+            setCart(newCart)
+        }else{
+            alert("Already exists")
+        }
+
+    }
+
+    const handleRemoveFromCart = (selectedItem) => {
+        const rest =  cart.filter(tshirt => tshirt._id !== selectedItem._id)
+        setCart(rest)
     }
 
     return (
         <div className="home-container">
-           <div className="shirt-container">
+            <div className="shirt-container">
                 {
-                    tshirts.map(tshirt => <Tshirt key={tshirt._id} tshirt={tshirt} handleAddToCart={handleAddToCart}/>)
+                    tshirts.map(tshirt => <Tshirt key={tshirt._id} tshirt={tshirt} handleAddToCart={handleAddToCart} />)
                 }
-           </div>
-           <div className="cart-container">
-               <Cart cart={cart}/>
-           </div>
+            </div>
+            <div className="cart-container">
+                <Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart} />
+            </div>
         </div>
     );
 };
