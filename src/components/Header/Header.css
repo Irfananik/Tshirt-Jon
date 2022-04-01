@@ -1,0 +1,22 @@
+.header-container{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 20px;
+}
+.logo-link{
+    text-decoration: none;
+    color:rgb(118, 118, 118)
+}
+.logo-link:hover{
+    color:rgb(187, 210, 87)
+}
+.nav-manu a{
+    text-decoration: none;
+    margin-right: 16px;
+    font-size: 18px;
+    color:rgb(118, 118, 118)
+}
+.nav-manu a:hover{
+    color:rgb(187, 210, 87)
+}
